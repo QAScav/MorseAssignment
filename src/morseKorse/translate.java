@@ -1,6 +1,9 @@
 package morseKorse;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 
@@ -12,6 +15,7 @@ public class translate {
     public translate() {
         result = "";
     }
+
     public String getResult() {
         return result;
     }
@@ -23,7 +27,7 @@ public class translate {
     String[] engLet = {"a", "b", "c", "d", "e", "f", "g", "h", "i", //English letter library
             "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
             "u", "v", "w", "x", "y", "z", " ", "1", "2", "3", "4",
-            "5", "6", "7", "8", "9", "0",};
+            "5", "6", "7", "8", "9", "0"};
     String[] morCode = {".-", "-...", "-.-.", "-..", //Morse code library
             ".", "..-.", "--.", "....", "..", ".---",
             "-.-", ".-..", "--", "-.", "---", ".--.",
@@ -31,22 +35,18 @@ public class translate {
             ".--", "-..-", "-.--", "--..", " ", ".----",
             "..---", "...--", "....-", ".....", "-....",
             "--...", "---..", "----.", "-----"};
-
     {
         for (int i = 0; i < engLet.length; i++) { //For-loop som räknar upp till totala mängden index i eng library
             dictionary.put(engLet[i], morCode[i]); //Med int i som "Index räknare" paras engLet och morCode
         }
-
         for (int i = 0; i < engLet.length; i++) {
             dictionaryReversed.put(morCode[i], engLet[i]);
-
         }
     }
-
-
-    public void toHolding(String input) {
+    public void toHolding(@NotNull String input) {
         holdingArr = input.split(" ");
         Collections.addAll(toBeTranslated, holdingArr); //Detta var en for loop som la till alla holdingArr index till tBT.
+        holdingArr= Arrays.stream(holdingArr).map(String::toLowerCase).toArray(String[]::new); /*Stora bokstäver i input till små.*/
     }
 
     public void HoldingToMorse() {
