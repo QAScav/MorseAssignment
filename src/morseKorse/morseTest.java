@@ -10,7 +10,7 @@ public class morseTest {
         translate TDD = new translate();
         TDD.toHolding("Hej");
         String actual = TDD.toBeTranslated.get(0);
-        String expected = "H";
+        String expected = "Hej";
         assertEquals(expected, actual);
         System.out.println(TDD.toBeTranslated);
     }
@@ -22,7 +22,7 @@ public class morseTest {
         //act
         TDD.toHolding("aa");
         TDD.HoldingToMorse();
-        String expected = ".-.-";
+        String expected = ".- .- ";
         String actual = TDD.getResult();
         System.out.println(TDD.getResult());
         assertEquals(expected, actual);
@@ -33,7 +33,7 @@ public class morseTest {
         //arrange
         translate TDD = new translate();
         //act
-        TDD.toHolding(".-.-");
+        TDD.toHolding(".- .-");
         TDD.HoldingToEnglish();
         String expected = "aa";
         String actual = TDD.getResult();
