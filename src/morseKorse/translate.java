@@ -35,6 +35,7 @@ public class translate {
             ".--", "-..-", "-.--", "--..", " ", ".----",
             "..---", "...--", "....-", ".....", "-....",
             "--...", "---..", "----.", "-----"};
+
     {
         for (int i = 0; i < engLet.length; i++) { //For-loop som räknar upp till totala mängden index i eng library
             dictionary.put(engLet[i], morCode[i]); //Med int i som "Index räknare" paras engLet och morCode
@@ -43,23 +44,33 @@ public class translate {
             dictionaryReversed.put(morCode[i], engLet[i]);
         }
     }
+
     public void toHolding(@NotNull String input) {
         holdingArr = input.split(" ");
         Collections.addAll(toBeTranslated, holdingArr); //Detta var en for loop som la till alla holdingArr index till tBT.
-        holdingArr= Arrays.stream(holdingArr).map(String::toLowerCase).toArray(String[]::new); /*Stora bokstäver i input till små.*/
+        holdingArr = Arrays.stream(holdingArr).map(String::toLowerCase).toArray(String[]::new); /*Stora bokstäver i input till små.*/
     }
 
     public void HoldingToMorse() {
         for (int i = 0; i < toBeTranslated.size(); i++) {
             for (int j = 0; j < holdingArr[i].length(); j++) {
-                result += dictionary.get(String.valueOf(holdingArr[i].charAt(j))) + " ";
+                if (!(dictionary.get(String.valueOf(holdingArr[i].charAt(j))) == null)) {
+                    result += dictionary.get(String.valueOf(holdingArr[i].charAt(j))) + " ";
+                } else {
+                    System.out.println("Invalid character input");
+
+                }
             }
         }
     }
 
     public void HoldingToEnglish() {
         for (int i = 0; i < toBeTranslated.size(); i++) {
-            result += dictionaryReversed.get(holdingArr[i]);
+            if (!(dictionaryReversed.get(holdingArr[i]) == null)) {
+                result += dictionaryReversed.get(holdingArr[i]);
+            } else {
+                System.out.println("Invalid character input");
+            }
         }
     }
 

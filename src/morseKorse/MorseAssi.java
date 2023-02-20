@@ -17,8 +17,6 @@ public class MorseAssi {
             tr.toHolding(input);
             if (input.contains(".") || input.contains("-")) {
                 tr.HoldingToEnglish(); //MORS -> ENG
-            } else if (input.contains("ö") || input.contains("å") || input.contains("ä")) {
-                System.out.println("Programmet stödjer för tillfället inte ord med bokstäverna Å, Ä eller Ö");
             } else {
                 tr.HoldingToMorse(); //ENG -> MORS
             }
